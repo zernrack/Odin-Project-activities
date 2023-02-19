@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <script>
+      const playRound = (playerChoice) => {
+        const choices = ["rock", "paper", "scissors"];
+        const computerChoice =
+          choices[Math.floor(Math.random() * choices.length)];
+
+        if (!choices.includes(playerChoice)) {
+          console.log("Invalid Choice");
+          return;
+        }
+
+        if (playerChoice === computerChoice) {
+          console.log("It's a tie");
+          alert("It's a tie");
+          return "tie";
+        } else if (
+          (playerChoice === "rock" && computerChoice === "scissors") ||
+          (playerChoice === "paper" && computerChoice === "rock") ||
+          (playerChoice === "scissors" && computerChoice === "paper")
+        ) {
+          console.log("Player wins!");
+          alert("Player wins!");
+          return "player";
+        } else {
+          console.log("Computer wins!");
+          alert("Computer wins!");
+          return "computer";
+        }
+      };
+
+      const playGame = () => {
+        let playerScore = 0;
+        let computerScore = 0;
+
+        for (let i = 1; i <= 5; i++) {
+          console.log(`Round ${i}`);
+
+          const playerChoice = prompt(
+            "Enter your Choices (Rock, Paper, Scissors): "
+          ).toLowerCase();
+          const winner = playRound(playerChoice);
+
+          if (winner === "player") {
+            playerScore++;
+          } else if (winner === "computer") {
+            computerScore++;
+          }
+        }
+        console.log(
+          `Final Score: User ${playerScore} Computer ${computerScore}`
+        );
+        if (playerScore === computerScore) {
+          console.log("It's Tie!");
+        } else if (playerScore > computerScore) {
+          console.log("You win!");
+        } else {
+          console.log("You lose!");
+        }
+      };
+
+      playGame();
+    </script>
+  </body>
+</html>
